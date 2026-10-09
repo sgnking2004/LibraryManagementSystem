@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- ===== DATABASE CONNECTION ===== -->
+        <property name="hibernate.connection.driver_class"> com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url"> jdbc:mysql://localhost:3306/library_db</property>
+
+        <!-- >>> ENTER YOUR USERNAME / PASSWORD HERE <<<
+             XAMPP default: user = root, password = (empty).
+             Better option: leave these as they are and set the environment variables
+             DB_USER and DB_PASSWORD (and optionally DB_URL). HibernateUtil reads them
+             and they override the values below, so no password is stored in code. -->
+        <property name="hibernate.connection.username">root</property>
+
+
+        <!-- ===== HIBERNATE SETTINGS ===== -->
+        <!-- For MySQL use: org.hibernate.dialect.MySQLDialect -->
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+
+        <!-- Print the SQL that Hibernate generates (great for learning) -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- update   = create missing tables/columns, never drop anything (safe default)
+             validate = only check that tables match the entities
+             create   = DROP and recreate tables on every start (loses data!) -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- ===== ENTITY MAPPINGS ===== -->
+        <mapping class="com.library.entity.Book"/>
+        <mapping class="com.library.entity.Member"/>
+        <mapping class="com.library.entity.BookIssue"/>
+
+    </session-factory>
+</hibernate-configuration>
